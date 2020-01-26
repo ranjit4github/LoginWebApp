@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Example</title>
+        <title>Ranjit Swain | DevOps Class</title>
     </head>
     <body bgcolor="silver">
         <form method="post" action="login.jsp">
@@ -11,7 +11,7 @@
             <table border="0" width="30%" cellpadding="3">
                 <thead>
                     <tr>
-                        <th colspan="2">Login Page</th>
+                        <th colspan="2">Login Page - V1.0</th>
                     </tr>
                 </thead>
                 <tbody>

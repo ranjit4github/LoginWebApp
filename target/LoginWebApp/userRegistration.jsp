@@ -6,7 +6,7 @@
     String lastName = request.getParameter("lastName");
     String email = request.getParameter("email");
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/devopsclass", "root", "Sunday@2019");
+    Connection con = DriverManager.getConnection("jdbc:mysql://192.168.99.100:3306/devopsclass", "ranjit", "Sunday@2019");
     Statement st = con.createStatement();
     int i = st.executeUpdate("insert into USER(first_name, last_name, email, username, password, regdate) values ('" + firstName + "','" + lastName + "','" + email + "','" + userName + "','" + password + "', CURDATE())");
     if (i > 0) {
