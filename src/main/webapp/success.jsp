@@ -6,12 +6,12 @@ You are not logged in<br/>
 <%} else {
 %>
 <center>Welcome <%=session.getAttribute("userid")%>
-<h3>DevOps Class - Test2</h3>
-<h4>16-01-2020</h4>
+<h3>DevOps work Flow - V1.4 </h3>
+<h4>Happy Learning!</h4>
 </center>
 
 <br/>
-<center><img src="images/DevOps-Architecture.png"></center>
+<center><img src="images/DevOps-Architecture.png" width="60%"" height="60%"></center>
 <br/>
 <a href='logout.jsp'>Log out</a>
 <%
