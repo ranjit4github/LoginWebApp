@@ -13,7 +13,7 @@ You are not logged in<br/>
 <br/>
 <center><img src="images/DevOps-Architecture.png" width="60%"" height="60%"></center>
 <br/>
-<a href='logout.jsp'>Log out</a>
+<center><a href='logout.jsp'>Log out</a></center>
 <%
     }
 %>
