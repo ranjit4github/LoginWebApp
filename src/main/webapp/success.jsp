@@ -6,7 +6,7 @@ You are not logged in<br/>
 <%} else {
 %>
 <center>Welcome <%=session.getAttribute("userid")%>
-<h3>DevOps work Flow - V1.5 </h3>
+<h3>DevOps work Flow - V1.6 </h3>
 <h4>Happy Learning!</h4>
 </center>
 
