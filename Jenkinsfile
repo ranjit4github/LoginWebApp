@@ -5,7 +5,7 @@ pipeline {
     }
 
     parameters {
-         string(name: 'tomcat_stag', defaultValue: '35.154.81.229', description: 'Node1-Remote Staging Server')
+         string(name: 'tomcat_stag', defaultValue: '35.154.81.229', description: 'Tomcat Staging Server')
     }
 
 stages{
