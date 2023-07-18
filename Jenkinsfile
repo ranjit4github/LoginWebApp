@@ -1,5 +1,5 @@
 pipeline {
-
+    agent any
     tools {
         // Note: this should match with the tool name configured in your jenkins instance (JENKINS_URL/configureTools/)
         maven "localMaven"
