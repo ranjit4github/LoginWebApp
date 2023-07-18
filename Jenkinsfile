@@ -69,13 +69,7 @@ pipeline {
                                 [artifactId: pom.artifactId,
                                 classifier: '',
                                 file: artifactPath,
-                                type: pom.packaging],
-
-                                // Lets upload the pom.xml file for additional information for Transitive dependencies
-                                [artifactId: pom.artifactId,
-                                classifier: '',
-                                file: "pom.xml",
-                                type: "pom"]
+                                type: pom.packaging]
                             ]
                         );
 
