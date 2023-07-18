@@ -1,7 +1,6 @@
 pipeline {
     agent any
     tools {
-        // Note: this should match with the tool name configured in your jenkins instance (JENKINS_URL/configureTools/)
         maven "localMaven"
         jdk "Java8"
     }
@@ -20,10 +19,9 @@ pipeline {
     }
 
     stages {
-        stage("clone code") {
+        stage("Check out") {
             steps {
                 script {
-                    // Let's clone the source
                     git 'https://github.com/ranjit4github/LoginWebApp.git';
                 }
             }
@@ -32,8 +30,6 @@ pipeline {
         stage("mvn build") {
             steps {
                 script {
-                    // If you are using Windows then you should use "bat" step
-                    // Since unit testing is out of the scope we skip them
                     sh "mvn clean package"
                 }
             }
