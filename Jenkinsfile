@@ -19,7 +19,7 @@ stages{
             }
         }
         stage ('Deliver to Ansible') {
-            scp ${workspace}target/*.war root@3.108.41.82:/etc/ansible/App
+            scp ${workspace}target/LoginWebApp.war root@3.108.41.82:/etc/ansible/App
         }
     }
 }
