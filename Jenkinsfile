@@ -83,7 +83,7 @@ pipeline {
             steps{
                 sh '''
                  cd /etc/ansible
-                 ansible-playbook -e vers=${BUILD_NUMBER} role/sites.yml
+                 ansible-playbook -e vers=${BUILD_NUMBER} roles/sites.yml
                  '''
             }
         }
