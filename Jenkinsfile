@@ -20,7 +20,7 @@ stages{
         }
         stage ('Deliver to Ansible') {
             steps{
-                sh "scp ${workspace}/target/LoginWebApp.war -o 'StrictHostKeyChecking no' root@3.108.41.82:/etc/ansible/App"
+                sh 'scp ${workspace}/target/LoginWebApp.war -o StrictHostKeyChecking=no root@3.108.41.82:/etc/ansible/App'
             }
         }
     }
