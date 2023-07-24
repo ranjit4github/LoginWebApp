@@ -85,7 +85,7 @@ pipeline {
                     git branch: 'feature/ansibleNexus', url: 'https://github.com/ranjit4github/Ansible_Demo_Project.git';
                 }
                 sh '''
-                 cd /home/ubuntu/Ansible_Demo_Project
+                 cd Ansible_Demo_Project
                  ansible-playbook -e vers=${BUILD_NUMBER} roles/site.yml
                  '''
             }
