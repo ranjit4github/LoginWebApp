@@ -23,7 +23,7 @@ pipeline {
         stage("Check out") {
             steps {
                 script {
-                    git branch: 'feature/nexusUpload', url: 'https://github.com/ranjit4github/LoginWebApp.git';
+                    git branch: 'feature/executeAnsible', url: 'https://github.com/ranjit4github/LoginWebApp.git';
                 }
             }
         }
