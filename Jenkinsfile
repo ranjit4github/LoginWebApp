@@ -11,15 +11,15 @@ pipeline {
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "65.2.189.169:8081"
+        NEXUS_URL = "167.71.235.85:8081"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "LoginWebApp"
         // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "nexusCredential"
+        NEXUS_CREDENTIAL_ID = "nexusCredentials"
         ARTIFACT_VERSION = "${BUILD_NUMBER}"
     }
 
-    stages {
+    stages { // checkout the code wing githubrepo
         stage("Check out") {
             steps {
                 script {
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
-                    pom = readMavenPom file: "pom.xml";
+                    pom = readMavenPom file: "pom.xml"; // we are using pipeline utility plugin
                     // Find built artifact under target folder
                     filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
                     // Print some info from the artifact found
