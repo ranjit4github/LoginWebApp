@@ -1,0 +1,8 @@
+FROM mysql:5.7.28
+
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=devopsclass
+ENV MYSQL_USER=ranjit
+ENV MYSQL_PASSWORD=Sunday@2019
+
+COPY devopsclass.sql /docker-entrypoint-initdb.d
