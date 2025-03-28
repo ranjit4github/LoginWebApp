@@ -34,18 +34,18 @@ pipeline {
             }
         }
 
-        //  stage("Upload Artifact to Nexus") {
-        //     steps {
-        //         script {
-        //             def artifactPath = "target/nexus-1.0.jar" // Update artifact name
-        //             def artifactName = "nexus-1.0.jar"
+         stage("Upload Artifact to Nexus") {
+            steps {
+                script {
+                    def artifactPath = "target/nexus-1.0.jar" // Update artifact name
+                    def artifactName = "nexus-1.0.jar"
 
-        //             sh """
-        //             curl -v -u ${NEXUS_CREDENTIALS_USR}:${NEXUS_CREDENTIALS_PSW} --upload-file ${artifactPath} ${NEXUS_URL}${artifactName}
-        //             """
-        //         }
-        //     }
-        // }
+                    sh """
+                    curl -v -u ${NEXUS_CREDENTIALS_USR}:${NEXUS_CREDENTIALS_PSW} --upload-file ${artifactPath} ${NEXUS_URL}${artifactName}
+                    """
+                }
+            }
+        }
     }
 
     post {
