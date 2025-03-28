@@ -73,7 +73,7 @@ pipeline {
             steps {
                 withAWS(credentials: 's3', region: "${AWS_REGION}") {
                     sh """
-                    aws s3 cp /var/lib/jenkins/workspace/s3/target/LoginWebApp.war s3://${S3_BUCKET}/LoginWebApp-${BUILD_NUMBER}.war
+                    aws s3 ls
                     """
                 }
             }
