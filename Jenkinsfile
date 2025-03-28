@@ -6,35 +6,30 @@ pipeline {
     }
 
     environment {
-        // This can be nexus3 or nexus2
-        NEXUS_VERSION = "nexus3"
-        // This can be http or https
-        NEXUS_PROTOCOL = "http"
-        // Where your Nexus is running
-        NEXUS_URL = "13.126.159.57:8081"
-        // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "logicwebapp"
-        // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "Nexus"
-        ARTIFACT_VERSION = "${BUILD_NUMBER}"
+        NEXUS_VERSION = "nexus3"   // Nexus 3 or Nexus 2
+        NEXUS_PROTOCOL = "http"    // HTTP or HTTPS
+        NEXUS_URL = "13.126.159.57:8081"  // Nexus Server IP and Port
+        NEXUS_REPOSITORY = "logicwebapp"  // Nexus Repository Name
+        NEXUS_CREDENTIAL_ID = "Nexus"  // Jenkins Credential ID for Nexus
+        ARTIFACT_VERSION = "${BUILD_NUMBER}"  // Versioning
     }
 
     stages {
-        stage("Check out") {
+        stage("Checkout Code") {
             steps {
                 script {
-                    git branch: 'feature/nexusUpload', url: 'https://github.com/PSRINVAS-729/LoginWebApp.git';
+                    git branch: 'feature/nexusUpload', url: 'https://github.com/PSRINVAS-729/LoginWebApp.git'
                 }
             }
         }
 
-        stage("mvn build") {
+        stage("Maven Build") {
             steps {
-                    sh "mvn clean install"
+                sh "mvn clean install"
             }
         }
 
-         stage("Upload Artifact to Nexus") {
+        stage("Upload Artifact to Nexus") {
             steps {
                 script {
                     withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIAL_ID}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
@@ -49,6 +44,7 @@ pipeline {
                     }
                 }
             }
+        }
     }
 
     post {
@@ -59,5 +55,4 @@ pipeline {
             echo "❌ Build or Artifact Upload Failed. Check Logs!"
         }
     }
-}
 }
