@@ -28,13 +28,13 @@ pipeline {
             }
         }
 
-        // stage("mvn build") {
-        //     steps {
-        //         script {
-        //             sh "mvn clean package"
-        //         }
-        //     }
-        // }
+        stage("mvn build") {
+            steps {
+                script {
+                    sh "mvn clean install"
+                }
+            }
+        }
 
         // stage("publish to nexus") {
         //     steps {
