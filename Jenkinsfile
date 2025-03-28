@@ -37,8 +37,8 @@ pipeline {
          stage("Upload Artifact to Nexus") {
             steps {
                 script {
-                    def artifactPath = "target/nexus-1.0.jar" // Update artifact name
-                    def artifactName = "nexus-1.0.jar"
+                    def artifactPath = "target/LoginWebApp.war" // Update artifact name
+                    def artifactName = "LoginWebApp.war"
 
                     sh """
                     curl -v -u ${NEXUS_CREDENTIALS_USR}:${NEXUS_CREDENTIALS_PSW} --upload-file ${artifactPath} ${NEXUS_URL}${artifactName}
