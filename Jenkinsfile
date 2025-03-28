@@ -72,9 +72,7 @@ pipeline {
         stage("Upload to S3") {
             steps {
                 withAWS(credentials: 's3', region: "${AWS_REGION}") {
-                    sh """
-                    aws s3 ls
-                    """
+                    sh "aws s3 ls"
                 }
             }
         }
