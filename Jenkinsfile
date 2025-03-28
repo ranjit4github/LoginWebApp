@@ -41,13 +41,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        success {
-            echo "✅ Build and Artifact Upload Successful!"
-        }
-        failure {
-            echo "❌ Build or Artifact Upload Failed. Check Logs!"
-        }
-    }
 }
