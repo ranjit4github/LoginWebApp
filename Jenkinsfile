@@ -12,6 +12,8 @@ pipeline {
         NEXUS_REPOSITORY = "logicwebapp"  // Nexus Repository Name
         NEXUS_CREDENTIAL_ID = "Nexus"  // Jenkins Credential ID for Nexus
         ARTIFACT_VERSION = "${BUILD_NUMBER}"  // Versioning
+        GROUP_ID = "com/psrinivas"
+        ARTIFACT_ID = "loginwebapp"
     }
 
     stages {
@@ -31,17 +33,10 @@ pipeline {
 
         stage("Upload Artifact to Nexus") {
             steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIAL_ID}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
-                        def artifactPath = "target/LoginWebApp.war"
-                        def artifactName = "LoginWebApp-${ARTIFACT_VERSION}.war"
-                        def nexusUploadUrl = "${NEXUS_PROTOCOL}://${NEXUS_URL}/repository/${NEXUS_REPOSITORY}/${artifactName}"
-
-                        sh """
-                        echo "Uploading ${artifactName} to Nexus..."
-                        curl -v -u ${NEXUS_USER}:${NEXUS_PASS} --upload-file ${artifactPath} ${nexusUploadUrl}
-                        """
-                    }
+                withCredentials([usernamePassword(credentialsId: 'Nexus', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+                    sh """
+                    curl -v -u ${NEXUS_USER}:${NEXUS_PASS} --upload-file target/LoginWebApp.war ${NEXUS_URL}/repository/${NEXUS_REPOSITORY}/${GROUP_ID}/${ARTIFACT_ID}/${ARTIFACT_VERSION}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.war
+                    """
                 }
             }
         }
