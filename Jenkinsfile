@@ -30,7 +30,7 @@ pipeline {
 
         stage("mvn build") {
             steps {
-                    sh "mvn clean package -DskipTests"
+                    sh "mvn clean install"
             }
         }
 
