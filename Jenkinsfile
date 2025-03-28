@@ -37,15 +37,18 @@ pipeline {
          stage("Upload Artifact to Nexus") {
             steps {
                 script {
-                    def artifactPath = "target/LoginWebApp.war" // Update artifact name
-                    def artifactName = "LoginWebApp.war"
+                    withCredentials([usernamePassword(credentialsId: "${NEXUS_CREDENTIAL_ID}", usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+                        def artifactPath = "target/LoginWebApp.war"
+                        def artifactName = "LoginWebApp-${ARTIFACT_VERSION}.war"
+                        def nexusUploadUrl = "${NEXUS_PROTOCOL}://${NEXUS_URL}/repository/${NEXUS_REPOSITORY}/${artifactName}"
 
-                    sh """
-                    curl -v -u ${NEXUS_CREDENTIALS_USR}:${NEXUS_CREDENTIALS_PSW} --upload-file ${artifactPath} ${NEXUS_URL}${artifactName}
-                    """
+                        sh """
+                        echo "Uploading ${artifactName} to Nexus..."
+                        curl -v -u ${NEXUS_USER}:${NEXUS_PASS} --upload-file ${artifactPath} ${nexusUploadUrl}
+                        """
+                    }
                 }
             }
-        }
     }
 
     post {
@@ -56,4 +59,5 @@ pipeline {
             echo "❌ Build or Artifact Upload Failed. Check Logs!"
         }
     }
+}
 }
