@@ -30,62 +30,30 @@ pipeline {
 
         stage("mvn build") {
             steps {
-                    sh "mvn clean install"
+                    sh "mvn clean package -DskipTests"
             }
         }
 
-        // stage("publish to nexus") {
-        //     steps {
-        //         script {
-        //             // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
-        //             pom = readMavenPom file: "pom.xml";
-        //             // Find built artifact under target folder
-        //             filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
-        //             // Print some info from the artifact found
-        //             echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
-        //             // Extract the path from the File found
-        //             artifactPath = filesByGlob[0].path;
-        //             // Assign to a boolean response verifying If the artifact name exists
-        //             artifactExists = fileExists artifactPath;
+         stage("Upload Artifact to Nexus") {
+            steps {
+                script {
+                    def artifactPath = "target/nexus-1.0.jar" // Update artifact name
+                    def artifactName = "nexus-1.0.jar"
 
-        //             if(artifactExists) {
-        //                 echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                    sh """
+                    curl -v -u ${NEXUS_CREDENTIALS_USR}:${NEXUS_CREDENTIALS_PSW} --upload-file ${artifactPath} ${NEXUS_URL}${artifactName}
+                    """
+                }
+            }
+        }
+    }
 
-        //                 nexusArtifactUploader(
-        //                     nexusVersion: NEXUS_VERSION,
-        //                     protocol: NEXUS_PROTOCOL,
-        //                     nexusUrl: NEXUS_URL,
-        //                     groupId: pom.groupId,
-        //                     version: ARTIFACT_VERSION,
-        //                     repository: NEXUS_REPOSITORY,
-        //                     credentialsId: NEXUS_CREDENTIAL_ID,
-        //                     artifacts: [
-        //                         // Artifact generated such as .jar, .ear and .war files.
-        //                         [artifactId: pom.artifactId,
-        //                         classifier: '',
-        //                         file: artifactPath,
-        //                         type: pom.packaging]
-        //                     ]
-        //                 );
-
-        //             } else {
-        //                 error "*** File: ${artifactPath}, could not be found";
-        //             }
-        //         }
-        //     }
-        // }
-        // stage ('Execute Ansible Play - CD'){
-        //     agent {
-        //         label 'ansible'
-        //     }
-        //     steps{
-        //         script {
-        //             git branch: 'feature/ansibleNexus', url: 'https://github.com/ranjit4github/Ansible_Demo_Project.git';
-        //         }
-        //         sh '''
-        //             ansible-playbook -e vers=${BUILD_NUMBER} roles/site.yml
-        //         '''
-        //     }
-        // }
+    post {
+        success {
+            echo "✅ Build and Artifact Upload Successful!"
+        }
+        failure {
+            echo "❌ Build or Artifact Upload Failed. Check Logs!"
+        }
     }
 }
