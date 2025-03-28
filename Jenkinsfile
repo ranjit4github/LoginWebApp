@@ -69,23 +69,14 @@ pipeline {
             }
         }
 
-        stage("Upload to S3") {
-            steps {
-                withAWS(credentials: 's3', region: "${AWS_REGION}") {
-                    sh """
-                    aws s3 cp target/LoginWebApp.war s3://${S3_BUCKET}/LoginWebApp-${BUILD_NUMBER}.war
-                    """
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            echo "✅ Build and Artifact Upload to S3 Successful!"
-        }
-        failure {
-            echo "❌ Build or Artifact Upload to S3 Failed. Check Logs!"
-        }
+        // stage("Upload to S3") {
+        //     steps {
+        //         withAWS(credentials: 's3', region: "${AWS_REGION}") {
+        //             sh """
+        //             aws s3 cp target/LoginWebApp.war s3://${S3_BUCKET}/LoginWebApp-${BUILD_NUMBER}.war
+        //             """
+        //         }
+        //     }
+        // }
     }
 }
