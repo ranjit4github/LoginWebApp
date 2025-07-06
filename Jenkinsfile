@@ -29,7 +29,7 @@ stages{
             }
             steps{
                 script {
-                    git branch: 'master', url: 'https://github.com/ranjit4github/FullStack_Deployment_Ansible.git';
+                    //git branch: 'master', url: 'https://github.com/ranjit4github/FullStack_Deployment_Ansible.git';
                 }
                 sh '''
 		 cd /etc/ansible
