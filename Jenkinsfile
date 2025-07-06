@@ -28,9 +28,6 @@ stages{
                 label 'ansible'
             }
             steps{
-                script {
-                    //git branch: 'master', url: 'https://github.com/ranjit4github/FullStack_Deployment_Ansible.git';
-                }
                 sh '''
 		 cd /etc/ansible
                  ansible-playbook roles/site.yml
