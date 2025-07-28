@@ -23,7 +23,7 @@ stages{
             }
         }   
 		
-		stage ('Execute Ansible Playbook - CD'){
+	stage ('Execute Ansible Playbook - CD'){
             agent {
                 label 'ansible'
             }
