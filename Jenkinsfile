@@ -19,13 +19,13 @@ stages{
         }
         stage ('Deliver to Ansible') {
             steps{
-                sh 'scp ${WORKSPACE}/target/LoginWebApp.war root@13.126.11.27:/etc/ansible/App'
+                sh 'scp ${WORKSPACE}/target/LoginWebApp.war root@13.127.154.51:/etc/ansible/App'
             }
         }   
 		
 	stage ('Execute Ansible Playbook - CD'){
             agent {
-                label 'ansible'
+                label 'ansibleDemo'
             }
             steps{
                 sh '''
