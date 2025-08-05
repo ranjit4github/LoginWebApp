@@ -19,7 +19,7 @@ stages{
         }
         stage ('Deliver to Ansible') {
             steps{
-                sh 'scp ${WORKSPACE}/target/LoginWebApp.war root@13.127.154.51:/etc/ansible/App'
+                sh 'scp ${WORKSPACE}/target/LoginWebApp.war root@13.126.25.116:/etc/ansible/App'
             }
         }   
 		
