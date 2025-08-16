@@ -19,7 +19,7 @@ stages{
         }
         stage ('Deliver to Ansible') {
             steps{
-                sh 'scp ${WORKSPACE}/target/LoginWebApp.war root@13.126.25.116:/etc/ansible/App'
+                sh 'scp ${WORKSPACE}/target/LoginWebApp.war root@65.1.85.11:/etc/ansible/App'
             }
         }   
 		
@@ -29,8 +29,7 @@ stages{
             }
             steps{
                 sh '''
-		 cd /etc/ansible
-                 ansible-playbook roles/site.yml
+                 	ansible-playbook /etc/ansible/roles/site.yml
                 '''
             }
         }
