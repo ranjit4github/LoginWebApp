@@ -6,7 +6,7 @@
     String lastName = request.getParameter("lastName");
     String email = request.getParameter("email");
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/devopsclass", "ranjit", "Sunday@2022");
+    Connection con = DriverManager.getConnection("jdbc:mysql://35.154.27.90:3306/devopsclass", "ranjit", "Sunday@2022");
     Statement st = con.createStatement();
     int i = st.executeUpdate("insert into USER(first_name, last_name, email, username, password, regdate) values ('" + firstName + "','" + lastName + "','" + email + "','" + userName + "','" + password + "', CURDATE())");
     if (i > 0) {
@@ -16,3 +16,4 @@
         response.sendRedirect("index.jsp");
     }
 %>
+
