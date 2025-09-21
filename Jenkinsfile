@@ -29,8 +29,7 @@ stages{
             }
             steps{
                 sh '''
-                 	#ansible-playbook /etc/ansible/roles/site.yml
-				  echo "Testing....."
+                 	ansible-playbook /etc/ansible/roles/site.yml
                 '''
             }
         }
