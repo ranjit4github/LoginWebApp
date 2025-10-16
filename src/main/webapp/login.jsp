@@ -3,7 +3,7 @@
     String userName = request.getParameter("userName");    
     String password = request.getParameter("password");
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://13.201.15.38:3306/devopsclass", "ranjit", "Sunday@2022");
+    Connection con = DriverManager.getConnection("jdbc:mysql://172.31.44.204:3306/devopsclass", "ranjit", "Sunday@2022");
     Statement st = con.createStatement();
     ResultSet rs;
     rs = st.executeQuery("select * from USER where username='" + userName + "' and password='" +password + "'");
@@ -14,5 +14,6 @@
         out.println("Invalid password <a href='index.jsp'>try again</a>");
     }
 %>
+
 
 
