@@ -11,7 +11,7 @@
             <table border="0" width="30%" cellpadding="3">
                 <thead>
                     <tr>
-                        <th colspan="2">Login Page - V1.8</th>
+                        <th colspan="2">Login Page - V2.0</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,3 +36,4 @@
         </form>
     </body>
 </html>
+
